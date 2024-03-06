@@ -8,7 +8,8 @@ const Catalog = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchListOfCars());
+    const page = 1;
+    dispatch(fetchListOfCars(page));
   }, []);
 
   return <ListOfCars data={listOfCars} />;

@@ -15,7 +15,7 @@ const ListOfCars = ({ data }) => {
             price={car.rentalPrice}
             company={car.rentalCompany}
             mileage={car.mileage}
-            adress={car.adress}
+            address={car.address}
             model={car.model}
             type={car.type}
           />

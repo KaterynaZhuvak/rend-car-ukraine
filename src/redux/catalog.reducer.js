@@ -3,10 +3,10 @@ import axios from "axios";
 
 export const fetchListOfCars = createAsyncThunk(
   "get/cars",
-  async (_, thunkApi) => {
+  async (page, thunkApi) => {
     const url = "https://65e7841e53d564627a8ef363.mockapi.io/api/car";
     const params = {
-      page: 1,
+      page,
       limit: 12,
     };
     try {
@@ -36,7 +36,7 @@ const catalogSlice = createSlice({
     builder
       .addCase(fetchListOfCars.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.listOfCars = payload;
+        state.listOfCars = [...payload];
       })
       .addMatcher(isAnyOf(fetchListOfCars.pending), (state) => {
         state.isLoading = true;

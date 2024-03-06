@@ -6,13 +6,18 @@ import { BrowserRouter } from "react-router-dom";
 import { persistor, store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { StyleSheetManager } from "styled-components";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <App />
+          <StyleSheetManager
+            shouldForwardProp={(prop) => prop !== "backgroundcolor"}
+          >
+            <App />
+          </StyleSheetManager>
         </PersistGate>
       </Provider>
     </BrowserRouter>
