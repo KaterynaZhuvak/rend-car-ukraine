@@ -1,9 +1,9 @@
 import React from "react";
 import { StyledButton } from "./Styled";
 
-const UniqueButton = ({ title, padding, width }) => {
+const UniqueButton = ({ onClick, title, padding, width }) => {
   return (
-    <StyledButton padding={padding} width={width}>
+    <StyledButton onClick={onClick} padding={padding} width={width}>
       {title}
     </StyledButton>
   );

@@ -5,22 +5,7 @@ import { StyledList } from "./Styled";
 const ListOfCars = ({ data }) => {
   return (
     <StyledList>
-      {data.length !== 0 &&
-        data.map((car) => (
-          <Card
-            id={car.id}
-            key={car.id}
-            img={car.img}
-            title={car.make}
-            year={car.year}
-            price={car.rentalPrice}
-            company={car.rentalCompany}
-            mileage={car.mileage}
-            address={car.address}
-            model={car.model}
-            type={car.type}
-          />
-        ))}
+      {data.length !== 0 && data.map((car) => <Card key={car.id} data={car} />)}
     </StyledList>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledCard,
   StyledImg,
@@ -8,61 +8,75 @@ import {
 import UniqueButton from "../Button/UniqueButton";
 import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
 import Modal from "../Modal/Modal";
+import { createCorrectAddress } from "../../helpers/createCityName";
 
-const Card = ({
-  id,
-  img,
-  title,
-  year,
-  price,
-  company,
-  mileage,
-  address,
-  model,
-  type,
-}) => {
-  const createCorrectAddress = (address) => {
-    const newArray = [];
+const Card = ({ data }) => {
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-    address
-      .replaceAll(",", "")
-      .split(" ")
-      .reverse()
-      .forEach((item, i) => {
-        if (i >= 0 && i <= 1) {
-          newArray.push(item);
-        } else {
-          return;
-        }
-      });
-
-    return newArray.reverse().join(" | ");
+  const handleOverlayClick = (e) => {
+    if (e.currentTarget === e.target) {
+      return setIsOpenModal(false);
+    }
   };
 
-  const newTitle = `${createCorrectAddress(
-    address
-  )} | ${company} | ${type} | ${model} | ${title} | ${mileage}`;
+  const handleClickOnButton = () => {
+    setIsOpenModal(false);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === "Escape") {
+        setIsOpenModal(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  const newTitle = `${createCorrectAddress(data.address)} | ${data.company} | ${
+    data.type
+  } | ${data.model} | ${data.title} | ${data.mileage}`;
 
   return (
     <StyledCard>
-      <FavoriteBtn id={id} />
-      <StyledImg src={img} alt={title} />
+      <FavoriteBtn id={data.id} />
+      <StyledImg src={data.img} alt={data.title} />
       <StyledTitleContainer>
         <h2 className="title">
-          {title}{" "}
+          {data.make}{" "}
           <span className="titleBlue">
-            {model.length <= 8 ? model : model.slice(0, 5) + "..."}
+            {data.model.length <= 8
+              ? data.model
+              : data.model.slice(0, 5) + "..."}
           </span>
-          , {year}
+          , {data.year}
         </h2>
-        <h3 className="title">{price}</h3>
+        <h3 className="title">{data.price}</h3>
       </StyledTitleContainer>
 
       <StyledText>
         {newTitle.length <= 80 ? newTitle : newTitle.slice(0, 80) + "..."}
       </StyledText>
-      <UniqueButton title={"Learn more"} width={"100%"} padding={"12px 0"} />
-      {/* <Modal /> */}
+      <UniqueButton
+        onClick={() => {
+          setIsOpenModal(true);
+        }}
+        title={"Learn more"}
+        width={"100%"}
+        padding={"12px 0"}
+      />
+      {isOpenModal && (
+        <Modal
+          data={data}
+          onClose={handleClickOnButton}
+          onClick={handleOverlayClick}
+        />
+      )}
     </StyledCard>
   );
 };
