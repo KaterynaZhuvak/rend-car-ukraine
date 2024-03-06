@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.li``;
+export const StyledCard = styled.li`
+  position: relative;
+`;
 
 export const StyledImg = styled.img`
   width: 100%;

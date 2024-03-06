@@ -3,14 +3,24 @@ import axios from "axios";
 
 export const fetchListOfCars = createAsyncThunk(
   "get/cars",
-  async (page, thunkApi) => {
-    const url = "https://65e7841e53d564627a8ef363.mockapi.io/api/car";
-    const params = {
-      page,
-      limit: 12,
-    };
+  async (data, thunkApi) => {
+    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=${data.page}&limit=${data.limit}`;
     try {
-      const { data } = await axios.get(url, { params });
+      const { data } = await axios.get(url);
+      console.log("data: ", data);
+      return data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const fetchLoadMore = createAsyncThunk(
+  "get/moreCars",
+  async (page, thunkApi) => {
+    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=${page}&limit=12`;
+    try {
+      const { data } = await axios.get(url);
       console.log("data: ", data);
       return data;
     } catch (err) {
@@ -31,12 +41,25 @@ const catalogSlice = createSlice({
 
   initialState,
 
-  reducers: {},
+  reducers: {
+    addFavorite: (state, { payload }) => {
+      state.favorites = [...state.favorites, payload];
+    },
+    deleteFavorite: (state, { payload }) => {
+      state.favorites = state.favorites.filter((item) => item !== payload);
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(fetchListOfCars.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.listOfCars = [...payload];
+        state.error = null;
+      })
+      .addCase(fetchLoadMore.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.listOfCars = [...state.listOfCars, ...payload];
+        state.error = null;
       })
       .addMatcher(isAnyOf(fetchListOfCars.pending), (state) => {
         state.isLoading = true;
@@ -47,5 +70,7 @@ const catalogSlice = createSlice({
         state.error = payload;
       }),
 });
+
+export const { addFavorite, deleteFavorite } = catalogSlice.actions;
 
 export const catalogReducer = catalogSlice.reducer;

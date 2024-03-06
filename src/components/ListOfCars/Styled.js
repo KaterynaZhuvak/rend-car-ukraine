@@ -6,4 +6,5 @@ export const StyledList = styled.ul`
   grid-template-rows: 426px 426px 426px;
   grid-column-gap: 29px;
   grid-row-gap: 50px;
+  margin-bottom: 100px;
 `;

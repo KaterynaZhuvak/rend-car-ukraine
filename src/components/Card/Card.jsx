@@ -6,8 +6,11 @@ import {
   StyledTitleContainer,
 } from "./Styled";
 import UniqueButton from "../Button/UniqueButton";
+import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
+import Modal from "../Modal/Modal";
 
 const Card = ({
+  id,
   img,
   title,
   year,
@@ -36,21 +39,30 @@ const Card = ({
     return newArray.reverse().join(" | ");
   };
 
+  const newTitle = `${createCorrectAddress(
+    address
+  )} | ${company} | ${type} | ${model} | ${title} | ${mileage}`;
+
   return (
     <StyledCard>
+      <FavoriteBtn id={id} />
       <StyledImg src={img} alt={title} />
       <StyledTitleContainer>
         <h2 className="title">
-          {title} <span className="titleBlue">{model}</span>, {year}
+          {title}{" "}
+          <span className="titleBlue">
+            {model.length <= 8 ? model : model.slice(0, 5) + "..."}
+          </span>
+          , {year}
         </h2>
         <h3 className="title">{price}</h3>
       </StyledTitleContainer>
 
       <StyledText>
-        {createCorrectAddress(address)} | {company} | {type} | {model} | {title}{" "}
-        | {mileage}
+        {newTitle.length <= 80 ? newTitle : newTitle.slice(0, 80) + "..."}
       </StyledText>
       <UniqueButton title={"Learn more"} width={"100%"} padding={"12px 0"} />
+      {/* <Modal /> */}
     </StyledCard>
   );
 };

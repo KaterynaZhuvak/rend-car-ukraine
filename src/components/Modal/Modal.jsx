@@ -1,7 +1,8 @@
 import React from "react";
+import { StyledModal } from "./Styled";
 
 const Modal = () => {
-  return <div>Modal</div>;
+  return <StyledModal>Modal</StyledModal>;
 };
 
 export default Modal;

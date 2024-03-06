@@ -8,6 +8,7 @@ const ListOfCars = ({ data }) => {
       {data.length !== 0 &&
         data.map((car) => (
           <Card
+            id={car.id}
             key={car.id}
             img={car.img}
             title={car.make}
