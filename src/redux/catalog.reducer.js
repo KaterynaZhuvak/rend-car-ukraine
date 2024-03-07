@@ -29,9 +29,24 @@ export const fetchLoadMore = createAsyncThunk(
   }
 );
 
+export const fetchFilteredCars = createAsyncThunk(
+  "get/filteredCars",
+  async (data, thunkApi) => {
+    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?orderBy=${data}`;
+    try {
+      const { data } = await axios.get(url);
+      console.log("data: ", data);
+      return data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err.message);
+    }
+  }
+);
+
 const initialState = {
   favorites: [],
   listOfCars: [],
+  filteredCars: [],
   isLoading: false,
   error: null,
 };
@@ -63,14 +78,25 @@ const catalogSlice = createSlice({
         state.listOfCars = [...state.listOfCars, ...payload];
         state.error = null;
       })
-      .addMatcher(isAnyOf(fetchListOfCars.pending), (state) => {
-        state.isLoading = true;
+      .addCase(fetchFilteredCars.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.filteredCars = [...payload];
         state.error = null;
       })
-      .addMatcher(isAnyOf(fetchListOfCars.rejected), (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      }),
+      .addMatcher(
+        isAnyOf(fetchListOfCars.pending, fetchLoadMore.pending),
+        (state) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(fetchListOfCars.rejected, fetchLoadMore.rejected),
+        (state, { payload }) => {
+          state.isLoading = false;
+          state.error = payload;
+        }
+      ),
 });
 
 export const { addFavorite, deleteFavorite } = catalogSlice.actions;

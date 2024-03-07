@@ -4,9 +4,11 @@ import { fetchListOfCars } from "../redux/catalog.reducer";
 import ListOfCars from "../components/ListOfCars/ListOfCars";
 import { useSearchParams } from "react-router-dom";
 import LoadMore from "../components/LoadMore/LoadMore";
+import FiltersForm from "../components/Filters/FiltersForm";
 
 const Catalog = () => {
   const listOfCars = useSelector((state) => state.catalog.listOfCars);
+  const filteredCars = useSelector((state) => state.catalog.filteredCars);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,6 +20,7 @@ const Catalog = () => {
 
   return (
     <div>
+      <FiltersForm />
       <ListOfCars data={listOfCars} />
       {listOfCars.length % 12 === 0 && <LoadMore />}
     </div>
