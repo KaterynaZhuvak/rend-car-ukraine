@@ -46,7 +46,9 @@ const catalogSlice = createSlice({
       state.favorites = [...state.favorites, payload];
     },
     deleteFavorite: (state, { payload }) => {
-      state.favorites = state.favorites.filter((item) => item !== payload);
+      state.favorites = state.favorites.filter(
+        (item) => item.id !== payload.id
+      );
     },
   },
   extraReducers: (builder) =>

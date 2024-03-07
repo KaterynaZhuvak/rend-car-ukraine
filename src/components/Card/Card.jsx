@@ -31,12 +31,13 @@ const Card = ({ data }) => {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
+    isOpenModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto";
     };
-  }, []);
+  }, [isOpenModal]);
 
   const newTitle = `${createCorrectAddress(data.address)} | ${data.company} | ${
     data.type
@@ -44,7 +45,7 @@ const Card = ({ data }) => {
 
   return (
     <StyledCard>
-      <FavoriteBtn id={data.id} />
+      <FavoriteBtn data={data} />
       <StyledImg src={data.img} alt={data.title} />
       <StyledTitleContainer>
         <h2 className="title">

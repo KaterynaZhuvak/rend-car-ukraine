@@ -4,17 +4,18 @@ import { StyledFavoriteBtn } from "./Styled.js";
 import { addFavorite, deleteFavorite } from "../../redux/catalog.reducer.js";
 import { useDispatch, useSelector } from "react-redux";
 
-const FavoriteBtn = ({ id }) => {
+const FavoriteBtn = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const favorites = useSelector((state) => state.catalog.favorites);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setIsFavorite(favorites.includes(id));
-  }, [favorites, id]);
+    const favoritesArray = favorites.map((item) => item.id);
+    setIsFavorite(favoritesArray.includes(data.id));
+  }, [favorites, data]);
 
   const onClick = () => {
-    isFavorite ? dispatch(deleteFavorite(id)) : dispatch(addFavorite(id));
+    isFavorite ? dispatch(deleteFavorite(data)) : dispatch(addFavorite(data));
   };
   return (
     <StyledFavoriteBtn type="button" onClick={onClick}>
