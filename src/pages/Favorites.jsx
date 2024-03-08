@@ -36,7 +36,9 @@ const Favorites = () => {
       <ListOfCars
         data={filteredFavorites.length === 0 ? currentCars : filteredFavorites}
       />
-      <Pagination totalCars={favorites.length} paginate={paginate} />
+      {favorites.length > 12 && (
+        <Pagination totalCars={favorites.length} paginate={paginate} />
+      )}
     </div>
   );
 };
