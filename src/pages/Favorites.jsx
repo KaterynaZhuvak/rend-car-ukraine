@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListOfCars from "../components/ListOfCars/ListOfCars";
 import FiltersForm from "../components/Filters/FiltersForm";
@@ -14,6 +14,11 @@ const Favorites = () => {
   const onSubmit = (value) => {
     dispatch(filterFavorites(value));
   };
+
+  useEffect(() => {
+    dispatch(filterFavorites(""));
+  }, [dispatch]);
+
   return (
     <div>
       <FiltersForm onClick={onSubmit} />

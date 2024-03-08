@@ -42,7 +42,7 @@ const FiltersForm = ({ onClick }) => {
     <StyledForm>
       <div onClick={() => setOpen(!open)}>
         <div className="formSelect">
-          {selected ? selected : "Select Country"}
+          {selected ? selected : "Select brand of car"}
           {open ? <DropDown /> : <DropUp />}
         </div>
 

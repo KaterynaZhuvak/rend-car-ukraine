@@ -8,7 +8,6 @@ import FiltersForm from "../components/Filters/FiltersForm";
 
 const Catalog = () => {
   const listOfCars = useSelector((state) => state.catalog.listOfCars);
-  const filteredCars = useSelector((state) => state.catalog.filteredCars);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
