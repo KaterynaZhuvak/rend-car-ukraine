@@ -49,7 +49,7 @@ const Card = ({ data }) => {
       <StyledImg src={data.img} alt={data.title} />
       <StyledTitleContainer>
         <h2 className="title">
-          {data.make}{" "}
+          {data.make} {""}
           <span className="titleBlue">
             {data.model.length <= 8
               ? data.model
@@ -57,7 +57,7 @@ const Card = ({ data }) => {
           </span>
           , {data.year}
         </h2>
-        <h3 className="title">{data.price}</h3>
+        <h3 className="title">{data.rentalPrice}</h3>
       </StyledTitleContainer>
 
       <StyledText>

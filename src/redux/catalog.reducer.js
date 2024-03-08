@@ -3,8 +3,8 @@ import axios from "axios";
 
 export const fetchListOfCars = createAsyncThunk(
   "get/cars",
-  async (data, thunkApi) => {
-    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=${data.page}&limit=${data.limit}`;
+  async (_, thunkApi) => {
+    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=1&limit=12`;
     try {
       const { data } = await axios.get(url);
       console.log("data: ", data);
@@ -32,7 +32,8 @@ export const fetchLoadMore = createAsyncThunk(
 export const fetchFilteredCars = createAsyncThunk(
   "get/filteredCars",
   async (data, thunkApi) => {
-    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?orderBy=${data}`;
+    console.log(data);
+    const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=1&limit=12&filter=${data}`;
     try {
       const { data } = await axios.get(url);
       console.log("data: ", data);
@@ -46,7 +47,6 @@ export const fetchFilteredCars = createAsyncThunk(
 const initialState = {
   favorites: [],
   listOfCars: [],
-  filteredCars: [],
   isLoading: false,
   error: null,
 };
@@ -65,6 +65,9 @@ const catalogSlice = createSlice({
         (item) => item.id !== payload.id
       );
     },
+    filterFavorites: (state, { payload }) => {
+      state.favorites = state.favorites.filter((item) => item.make === payload);
+    },
   },
   extraReducers: (builder) =>
     builder
@@ -80,7 +83,7 @@ const catalogSlice = createSlice({
       })
       .addCase(fetchFilteredCars.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.filteredCars = [...payload];
+        state.listOfCars = [...payload];
         state.error = null;
       })
       .addMatcher(
@@ -99,6 +102,7 @@ const catalogSlice = createSlice({
       ),
 });
 
-export const { addFavorite, deleteFavorite } = catalogSlice.actions;
+export const { addFavorite, deleteFavorite, filterFavorites } =
+  catalogSlice.actions;
 
 export const catalogReducer = catalogSlice.reducer;

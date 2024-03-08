@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useSearchParams } from "react-router-dom";
 import { fetchFilteredCars } from "../../redux/catalog.reducer";
+import UniqueButton from "../Button/UniqueButton";
+import { StyledForm } from "./Styled";
+import DropDown from "../../assets/DropDown";
+import DropUp from "../../assets/DropUp";
 
 const carBrands = [
   "Buick",
@@ -13,7 +16,6 @@ const carBrands = [
   "Lincoln",
   "GMC",
   "Hyundai",
-  "MINI",
   "Bentley",
   "Mercedes-Benz",
   "Aston Martin",
@@ -22,30 +24,53 @@ const carBrands = [
   "Audi",
   "BMW",
   "Chevrolet",
-  "Mercedes-Benz",
   "Chrysler",
   "Kia",
   "Land",
 ];
 
-const FiltersForm = () => {
-  const dispatch = useDispatch();
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const brandValue = e.target.brands.value;
-    dispatch(fetchFilteredCars(brandValue));
+const FiltersForm = ({ onClick }) => {
+  const [value, setValue] = useState("");
+  const [selected, setSelected] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    onClick(value);
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <select name="brands" id="brand">
-        {carBrands.map((brand) => (
-          <option value={brand}>{brand}</option>
-        ))}
-      </select>
+    <StyledForm>
+      <div onClick={() => setOpen(!open)}>
+        <div className="formSelect">
+          {selected ? selected : "Select Country"}
+          {open ? <DropDown /> : <DropUp />}
+        </div>
 
-      <button>Search</button>
-    </form>
+        <ul className={`formDrop ${open ? "block" : "hidden"}`}>
+          <div></div>
+          {carBrands.map((brand) => (
+            <li
+              key={brand}
+              onClick={() => {
+                if (brand.toLowerCase() !== selected.toLowerCase()) {
+                  setSelected(brand);
+                  setOpen(false);
+                  setValue(brand);
+                }
+              }}
+            >
+              {brand}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <UniqueButton
+        onClick={handleClick}
+        title={"Search"}
+        padding={"14px"}
+        width={"136px"}
+      />
+    </StyledForm>
   );
 };
 
