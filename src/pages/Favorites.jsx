@@ -17,7 +17,7 @@ const Favorites = () => {
   useEffect(() => {
     setCopyFavorites(favorites);
     dispatch(filterFavorites(""));
-  }, [dispatch]);
+  }, [dispatch, favorites]);
 
   const onSubmit = (value) => {
     dispatch(filterFavorites(value));

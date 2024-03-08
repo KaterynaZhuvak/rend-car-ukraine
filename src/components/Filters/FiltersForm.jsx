@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { fetchFilteredCars } from "../../redux/catalog.reducer";
 import UniqueButton from "../Button/UniqueButton";
 import { StyledForm } from "./Styled";
 import DropDown from "../../assets/DropDown";

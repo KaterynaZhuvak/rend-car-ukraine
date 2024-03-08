@@ -7,7 +7,6 @@ export const fetchListOfCars = createAsyncThunk(
     const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=1&limit=12`;
     try {
       const { data } = await axios.get(url);
-      console.log("data: ", data);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.message);
@@ -21,7 +20,6 @@ export const fetchLoadMore = createAsyncThunk(
     const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=${page}&limit=12`;
     try {
       const { data } = await axios.get(url);
-      console.log("data: ", data);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.message);
@@ -32,11 +30,9 @@ export const fetchLoadMore = createAsyncThunk(
 export const fetchFilteredCars = createAsyncThunk(
   "get/filteredCars",
   async (data, thunkApi) => {
-    console.log(data);
     const url = `https://65e7841e53d564627a8ef363.mockapi.io/api/car?page=1&limit=12&filter=${data}`;
     try {
       const { data } = await axios.get(url);
-      console.log("data: ", data);
       return data;
     } catch (err) {
       return thunkApi.rejectWithValue(err.message);
