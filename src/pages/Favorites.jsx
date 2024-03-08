@@ -7,6 +7,9 @@ import { filterFavorites } from "../redux/catalog.reducer";
 const Favorites = () => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.catalog.favorites);
+  const filteredFavorites = useSelector(
+    (state) => state.catalog.filteredFavorites
+  );
 
   const onSubmit = (value) => {
     dispatch(filterFavorites(value));
@@ -14,7 +17,9 @@ const Favorites = () => {
   return (
     <div>
       <FiltersForm onClick={onSubmit} />
-      <ListOfCars data={favorites} />
+      <ListOfCars
+        data={filteredFavorites.length === 0 ? favorites : filteredFavorites}
+      />
     </div>
   );
 };

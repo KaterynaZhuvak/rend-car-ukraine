@@ -46,6 +46,7 @@ export const fetchFilteredCars = createAsyncThunk(
 
 const initialState = {
   favorites: [],
+  filteredFavorites: [],
   listOfCars: [],
   isLoading: false,
   error: null,
@@ -66,7 +67,10 @@ const catalogSlice = createSlice({
       );
     },
     filterFavorites: (state, { payload }) => {
-      state.favorites = state.favorites.filter((item) => item.make === payload);
+      state.filteredFavorites = state.favorites;
+      state.filteredFavorites = state.favorites.filter(
+        (item) => item.make === payload
+      );
     },
   },
   extraReducers: (builder) =>
