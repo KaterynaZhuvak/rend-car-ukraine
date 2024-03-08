@@ -5,6 +5,7 @@ import FiltersForm from "../components/Filters/FiltersForm";
 import { filterFavorites } from "../redux/catalog.reducer";
 import Pagination from "../components/Pagination/Pagination";
 import NoResults from "../components/NoResults/NoResults";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ const Favorites = () => {
   }, [dispatch, favorites]);
 
   const onSubmit = (value) => {
-    dispatch(filterFavorites(value));
+    filterFavorites.length === 0
+      ? Notify.info("There is no suitable brand in the list!")
+      : dispatch(filterFavorites(value));
   };
 
   const lastIndex = currentPage * 12;
