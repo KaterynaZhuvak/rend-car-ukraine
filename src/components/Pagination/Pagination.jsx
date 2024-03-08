@@ -4,7 +4,7 @@ import { StyledPagination } from "./Styled";
 const Pagination = ({ totalCars, paginate }) => {
   const pages = [];
 
-  for (let i = 0; i < Math.ceil(totalCars / 12); i++) {
+  for (let i = 0; i < Math.ceil(totalCars / 8); i++) {
     pages.push(i + 1);
   }
   return (

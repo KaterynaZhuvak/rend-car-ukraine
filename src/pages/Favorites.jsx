@@ -27,8 +27,8 @@ const Favorites = () => {
       : dispatch(filterFavorites(value));
   };
 
-  const lastIndex = currentPage * 12;
-  const firstIndex = lastIndex - 12;
+  const lastIndex = currentPage * 8;
+  const firstIndex = lastIndex - 8;
   const currentCars = copyFavorites.slice(firstIndex, lastIndex);
   const paginate = (page) => {
     setCurrentPage(page);
@@ -46,7 +46,7 @@ const Favorites = () => {
           }
         />
       )}
-      {favorites.length > 12 && (
+      {favorites.length > 8 && (
         <Pagination totalCars={favorites.length} paginate={paginate} />
       )}
     </div>
