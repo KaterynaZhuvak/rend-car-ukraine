@@ -27,12 +27,11 @@ export const StyledTitleContainer = styled.div`
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
-    letter-spacing: 0%;
     text-align: left;
   }
 
   .titleBlue {
-    color: rgb(52, 112, 255);
+    color: var(--blue-color);
   }
 `;
 
@@ -41,7 +40,6 @@ export const StyledText = styled.div`
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
-  letter-spacing: 0%;
   text-align: left;
   margin-bottom: 28px;
 `;

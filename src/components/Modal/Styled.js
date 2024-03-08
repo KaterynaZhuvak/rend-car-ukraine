@@ -17,7 +17,7 @@ export const StyledModal = styled.div`
     width: 541px;
     height: 752px;
     border-radius: 24px;
-    background: rgb(255, 255, 255);
+    background: var(--white-color);
     z-index: 2;
     padding: 40px;
     display: flex;
@@ -49,7 +49,7 @@ export const StyledModal = styled.div`
   }
 
   .modalTitleBlue {
-    color: rgb(52, 112, 255);
+    color: var(--blue-color);
   }
 
   .modalCharacteristics {
@@ -62,7 +62,7 @@ export const StyledModal = styled.div`
   }
 
   .modalDescription {
-    color: rgb(18, 20, 23);
+    color: var(--black-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
@@ -70,7 +70,7 @@ export const StyledModal = styled.div`
   }
 
   .modalTitleCharacteristics {
-    color: rgb(18, 20, 23);
+    color: var(--black-color);
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -88,5 +88,28 @@ export const StyledModal = styled.div`
     padding: 5px;
     margin-bottom: 8px;
     margin-right: 8px;
+  }
+
+  .rentalBtn {
+    text-align: center;
+    display: block;
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    width: 168px;
+    padding: 12px 0;
+    border-radius: 12px;
+    border: 1px solid var(--blue-color);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+
+    transition: all 250ms cubic-bezier(0.5, -0.75, 0.7, 2);
+  }
+
+  .rentalBtn:hover,
+  .rentalBtn:focus {
+    transform: scale(1.05);
+    background-color: var(--blue-hover-color);
+    border: 1px solid var(--blue-hover-color);
   }
 `;

@@ -11,8 +11,8 @@ export const StyledForm = styled.div`
   .formSelect {
     position: relative;
     border-radius: 14px;
-    background: rgb(247, 247, 251);
-    border: 1px solid rgb(247, 247, 251);
+    background: var(--grey-color);
+    border: 1px solid var(--grey-color);
     width: 224px;
     height: 48px;
     padding: 14px 18px;
@@ -36,7 +36,7 @@ export const StyledForm = styled.div`
     border: 1px solid rgba(18, 20, 23, 0.05);
     border-radius: 14px;
     box-shadow: 0px 4px 36px 0px rgba(0, 0, 0, 0.02);
-    background: rgb(255, 255, 255);
+    background: var(--white-color);
     z-index: 1;
     width: 224px;
     height: 272px;

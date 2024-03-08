@@ -8,8 +8,13 @@ export const StyledFavoriteBtn = styled.button`
   border: none;
 
   svg {
-    // fill: transparent;
-    // stroke: white;
     stroke-width: 2px;
+
+    transition: all 250ms cubic-bezier(0.5, -0.75, 0.7, 2);
+  }
+
+  svg:hover,
+  svg:focus {
+    transform: scale(1.1);
   }
 `;

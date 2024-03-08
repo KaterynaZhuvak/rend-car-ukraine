@@ -9,6 +9,7 @@ import UniqueButton from "../Button/UniqueButton";
 import FavoriteBtn from "../FavoriteBtn/FavoriteBtn";
 import Modal from "../Modal/Modal";
 import { createCorrectAddress } from "../../helpers/createCityName";
+import { addCommaToThousands } from "../../helpers/addCommaToThousands";
 
 const Card = ({ data }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -41,7 +42,7 @@ const Card = ({ data }) => {
 
   const newTitle = `${createCorrectAddress(data.address)} | ${data.company} | ${
     data.type
-  } | ${data.model} | ${data.title} | ${data.mileage}`;
+  } | ${data.model} | ${data.title} | ${addCommaToThousands(data.mileage)}`;
 
   return (
     <StyledCard>

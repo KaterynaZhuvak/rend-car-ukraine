@@ -3,6 +3,15 @@
 body {
   color: rgb(18, 20, 23);
   padding-bottom: 150px;
+  font-family: "Manrope";
+}
+
+:root {
+  --black-color: rgb(18, 20, 23);
+  --blue-color: rgb(52, 112, 255);
+  --white-color: rgb(255, 255, 255);
+  --grey-color: rgb(247, 247, 251);
+  --blue-hover-color: rgb(11, 68, 205);
 }
 
 h1,

@@ -1,14 +1,22 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  background-color: rgb(52, 112, 255);
-  color: rgb(255, 255, 255);
+  background-color: var(--blue-color);
+  color: var(--white-color);
   width: ${(props) => props.width};
   padding: ${(props) => props.padding};
   border-radius: 12px;
-  border: 1px solid rgb(52, 112, 255);
+  border: 1px solid var(--blue-color);
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  letter-spacing: 0%;
+
+  transition: all 250ms cubic-bezier(0.5, -0.75, 0.7, 2);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    background-color: var(--blue-hover-color);
+    border: 1px solid var(--blue-hover-color);
+  }
 `;

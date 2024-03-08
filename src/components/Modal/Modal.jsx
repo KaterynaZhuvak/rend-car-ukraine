@@ -3,7 +3,6 @@ import { StyledModal } from "./Styled";
 import { createPortal } from "react-dom";
 import Close from "../../assets/Close";
 import { createCorrectAddress } from "../../helpers/createCityName";
-import UniqueButton from "../Button/UniqueButton";
 
 const modalElement = document.getElementById("modal");
 
@@ -51,15 +50,9 @@ const Modal = ({ onClick, onClose, data }) => {
             </span>
           ))}
         </div>
-
-        <UniqueButton
-          // onClick={() => {
-          //   setIsOpenModal(true);
-          // }}
-          title={"Rental car"}
-          width={"168px"}
-          padding={"12px 0"}
-        />
+        <a className="rentalBtn" href="tel:+380730000000">
+          Rental car
+        </a>
       </div>
     </StyledModal>,
     modalElement
