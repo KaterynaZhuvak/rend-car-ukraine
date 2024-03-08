@@ -45,7 +45,6 @@ const FiltersForm = ({ onClick }) => {
         </div>
 
         <ul className={`formDrop ${open ? "block" : "hidden"}`}>
-          <div></div>
           {carBrands.map((brand) => (
             <li
               key={brand}

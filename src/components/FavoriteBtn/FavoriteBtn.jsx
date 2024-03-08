@@ -3,6 +3,7 @@ import Heart from "../../assets/Heart.jsx";
 import { StyledFavoriteBtn } from "./Styled.js";
 import { addFavorite, deleteFavorite } from "../../redux/catalog.reducer.js";
 import { useDispatch, useSelector } from "react-redux";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const FavoriteBtn = ({ data }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -15,7 +16,13 @@ const FavoriteBtn = ({ data }) => {
   }, [favorites, data]);
 
   const onClick = () => {
-    isFavorite ? dispatch(deleteFavorite(data)) : dispatch(addFavorite(data));
+    if (isFavorite) {
+      Notify.info("The car was removed from favorites!");
+      return dispatch(deleteFavorite(data));
+    } else {
+      Notify.success("The car has been successfully added to favorites!");
+      return dispatch(addFavorite(data));
+    }
   };
   return (
     <StyledFavoriteBtn type="button" onClick={onClick}>

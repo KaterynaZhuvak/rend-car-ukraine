@@ -4,6 +4,7 @@ import ListOfCars from "../components/ListOfCars/ListOfCars";
 import FiltersForm from "../components/Filters/FiltersForm";
 import { filterFavorites } from "../redux/catalog.reducer";
 import Pagination from "../components/Pagination/Pagination";
+import NoResults from "../components/NoResults/NoResults";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,15 @@ const Favorites = () => {
   return (
     <div>
       <FiltersForm onClick={onSubmit} />
-      <ListOfCars
-        data={filteredFavorites.length === 0 ? currentCars : filteredFavorites}
-      />
+      {favorites.length === 0 ? (
+        <NoResults />
+      ) : (
+        <ListOfCars
+          data={
+            filteredFavorites.length === 0 ? currentCars : filteredFavorites
+          }
+        />
+      )}
       {favorites.length > 12 && (
         <Pagination totalCars={favorites.length} paginate={paginate} />
       )}

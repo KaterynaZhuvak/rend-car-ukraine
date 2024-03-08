@@ -21,6 +21,7 @@ export const StyledForm = styled.div`
     font-size: 18px;
     font-weight: 500;
     line-height: 20px;
+    cursor: pointer;
   }
 
   .formSelect svg {
