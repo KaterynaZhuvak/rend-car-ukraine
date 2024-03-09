@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const StyledHero = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
+  .heroContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 100px;
+  }
 
   .heroTitleContainer {
     display: flex;
@@ -53,5 +56,24 @@ export const StyledHero = styled.div`
   .heroImg {
     border-radius: 14px;
     height: 400px;
+  }
+
+  .heroListContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 20px;
+    justify-content: center;
+  }
+
+  .listTitle {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .listText {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
   }
 `;

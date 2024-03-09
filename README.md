@@ -1,8 +1,11 @@
-# React + Vite
+# Car Rental
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+*The project was created for users traveling through the cities of Ukraine in search of adventure. To get to these adventures you need to rent a car. Therefore, the created site will facilitate the search for a car of any taste and color.*:stuck_out_tongue:
 
-Currently, two official plugins are available:
+## Main page 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  *On this page you will familiarize yourself with the site.*
+
+  ![main page]()
+
+
