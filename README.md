@@ -21,7 +21,7 @@
 ![favorites](./public//favorites.png)
 
 
-### Technologies used in the 
+### Technologies used in the project
 
 + HTML
 + CSS
