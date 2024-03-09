@@ -22,7 +22,6 @@
 
 
 ### Technologies used in the 
-project:sunglasses:
 
 + HTML
 + CSS
