@@ -21,7 +21,8 @@
 ![favorites](./public//favorites.png)
 
 
-### Technologies used in the project:sunglasses:
+### Technologies used in the 
+project:sunglasses:
 
 + HTML
 + CSS
