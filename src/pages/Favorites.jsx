@@ -22,9 +22,10 @@ const Favorites = () => {
   }, [dispatch, favorites]);
 
   const onSubmit = (value) => {
-    filterFavorites.length === 0
-      ? Notify.info("There is no suitable brand in the list!")
-      : dispatch(filterFavorites(value));
+    dispatch(filterFavorites(value));
+    if (filteredFavorites.length === 0) {
+      Notify.info("There is no suitable brand in the list!");
+    }
   };
 
   const lastIndex = currentPage * 8;

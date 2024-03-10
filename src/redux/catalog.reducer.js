@@ -67,6 +67,7 @@ const catalogSlice = createSlice({
       state.filteredFavorites = state.favorites.filter(
         (item) => item.make === payload
       );
+      console.log(state.filteredFavorites);
     },
   },
   extraReducers: (builder) =>
