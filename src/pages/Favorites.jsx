@@ -5,7 +5,6 @@ import FiltersForm from "../components/Filters/FiltersForm";
 import { filterFavorites } from "../redux/catalog.reducer";
 import Pagination from "../components/Pagination/Pagination";
 import NoResults from "../components/NoResults/NoResults";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,6 @@ const Favorites = () => {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [copyFavorites, setCopyFavorites] = useState([]);
-  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
     setCopyFavorites(favorites);
