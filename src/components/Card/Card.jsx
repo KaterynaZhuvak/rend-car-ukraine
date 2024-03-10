@@ -40,9 +40,11 @@ const Card = ({ data }) => {
     };
   }, [isOpenModal]);
 
-  const newTitle = `${createCorrectAddress(data.address)} | ${data.company} | ${
-    data.type
-  } | ${data.model} | ${data.title} | ${addCommaToThousands(data.mileage)}`;
+  const newTitle = `${createCorrectAddress(data.address)} | ${
+    data.rentalCompany
+  } | ${data.type} | ${data.model} | ${data.make} | ${addCommaToThousands(
+    data.mileage
+  )}`;
 
   return (
     <StyledCard>
