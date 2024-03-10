@@ -31,6 +31,10 @@ const Favorites = () => {
     setCurrentPage(page);
   };
 
+  const pagination = favorites.length > 8 && (
+    <Pagination totalCars={favorites.length} paginate={paginate} />
+  );
+
   return (
     <div>
       <FiltersForm onClick={onSubmit} />
@@ -43,9 +47,7 @@ const Favorites = () => {
           }
         />
       )}
-      {favorites.length > 8 && (
-        <Pagination totalCars={favorites.length} paginate={paginate} />
-      )}
+      {filteredFavorites.length === 0 && pagination}
     </div>
   );
 };
