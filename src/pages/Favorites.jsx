@@ -15,6 +15,7 @@ const Favorites = () => {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [copyFavorites, setCopyFavorites] = useState([]);
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
     setCopyFavorites(favorites);
@@ -23,10 +24,14 @@ const Favorites = () => {
 
   const onSubmit = (value) => {
     dispatch(filterFavorites(value));
-    if (filteredFavorites.length === 0) {
+  };
+
+  useEffect(() => {
+    if (!firstRender && filteredFavorites.length === 0) {
       Notify.info("There is no suitable brand in the list!");
     }
-  };
+    setFirstRender(false);
+  }, [filteredFavorites, firstRender]);
 
   const lastIndex = currentPage * 8;
   const firstIndex = lastIndex - 8;
