@@ -26,13 +26,6 @@ const Favorites = () => {
     dispatch(filterFavorites(value));
   };
 
-  useEffect(() => {
-    if (!firstRender && filteredFavorites.length === 0) {
-      Notify.info("There is no suitable brand in the list!");
-    }
-    setFirstRender(false);
-  }, [filteredFavorites, firstRender]);
-
   const lastIndex = currentPage * 8;
   const firstIndex = lastIndex - 8;
   const currentCars = copyFavorites.slice(firstIndex, lastIndex);
